@@ -36,9 +36,9 @@ def update_files():
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
     Repo.clone_from(repo_url, local_path, branch='main')
-    python_files = glob.glob('*.py')
+    '''python_files = glob.glob('*.py')
     for file in python_files:
-        os.chmod(file, 0o755)
+        os.chmod(file, 0o755)'''
     restart_application()
 
 def restart_application():
