@@ -1,5 +1,5 @@
 #!/usr/bin/evn python
-import subprocess, os, requests
+import subprocess, os, requests, shutil, sys
 from tkinter import Tk, Button, LEFT, TOP, LabelFrame, X, Label, Canvas
 from footer import add_footer
 from dotenv import load_dotenv
