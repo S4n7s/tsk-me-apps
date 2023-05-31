@@ -31,12 +31,12 @@ def check_version():
 
 def update_files():
     if os.path.exists(local_path):
-    for filename in os.listdir(local_path):
-        file_path = os.path.join(local_path, filename)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
+        for filename in os.listdir(local_path):
+            file_path = os.path.join(local_path, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
     Repo.clone_from(repo_url, local_path, branch='main')
     restart_application()
 
