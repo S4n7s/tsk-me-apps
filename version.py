@@ -1,1 +1,4 @@
-current_version = '1.1'
+import main
+
+
+current_version = main.
