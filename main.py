@@ -23,7 +23,8 @@ def check_version():
     response = requests.get(api_url)
     latest_release = response.json()
     latest_version = latest_release['tag_name']
-    if version.current_version != latest_version:
+    current_version = '1.1'
+    if current_version != latest_version:
         return True
 
 def update_files():
