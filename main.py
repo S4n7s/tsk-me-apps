@@ -12,13 +12,11 @@ def open_link_convert():
     subprocess.Popen(['python', path])
     main.destroy()
 
-
 def open_msg_eml():
     home = os.path.expanduser("~")
     path = os.path.join(home, "tsk-me-app", "msg_eml.py")
     subprocess.Popen(['python', path])
     main.destroy()
-
 
 def check_version():
     repo_owner = 's4n7s'
@@ -31,9 +29,16 @@ def check_version():
     if current_version != latest_version:
         return True
 
-
-def update_files(repo_url, local_path):
+def update_files():
     Repo.clone_from(repo_url, local_path, branch='main')
+    restart_application()
+
+def restart_application():
+    python_executable = sys.executable
+    script_path = os.path.abspath(__file__)
+    subprocess.Popen([python_executable, script_path])
+    sys.exit()
+    
 
 load_dotenv()
 
