@@ -44,7 +44,9 @@ load_dotenv()
 
 github_token = os.getenv('GITHUB_TOKEN')
 repo_url = 'https://github.com/S4n7s/tsk-me-apps.git'
-local_path = '~/tsk-me-app'
+relative_path = 'tsk-me-app'
+home_dir = os.path.expanduser("~")
+local_path = os.path.join(home_dir, relative_path)
 
 main = Tk()
 
