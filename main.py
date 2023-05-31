@@ -19,12 +19,7 @@ def open_msg_eml():
     main.destroy()
 
 def check_version():
-    repo_owner = 's4n7s'
-    repo_name = 'tsk-me-apps'
-    api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest'
-    response = requests.get(api_url)
-    latest_release = response.json()
-    latest_version = latest_release['tag_name']
+    
     if version.current_version != latest_version:
         return True
 
@@ -53,6 +48,11 @@ repo_url = 'https://github.com/S4n7s/tsk-me-apps.git'
 relative_path = 'tsk-me-app'
 home_dir = os.path.expanduser("~")
 local_path = os.path.join(home_dir, relative_path)
+repo_owner = 's4n7s'
+api_url = f'https://api.github.com/repos/{repo_owner}/{relative_path}/releases/latest'
+response = requests.get(api_url)
+latest_release = response.json()
+latest_version = latest_release['tag_name']
 
 main = Tk()
 
