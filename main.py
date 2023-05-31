@@ -1,5 +1,5 @@
 #!/usr/bin/evn python
-import subprocess, os, requests, shutil, sys
+import subprocess, os, requests, shutil, sys, version
 from tkinter import Tk, Button, LEFT, TOP, LabelFrame, X, Label, Canvas
 from footer import add_footer
 from dotenv import load_dotenv
@@ -25,8 +25,7 @@ def check_version():
     response = requests.get(api_url)
     latest_release = response.json()
     latest_version = latest_release['tag_name']
-    current_version = '1.1'
-    if current_version != latest_version:
+    if version.current_version != latest_version:
         return True
 
 def update_files():
