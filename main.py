@@ -19,7 +19,6 @@ def open_msg_eml():
     main.destroy()
 
 def check_version():
-    
     if version.current_version != latest_version:
         return True
 
@@ -32,6 +31,7 @@ def update_files():
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
     Repo.clone_from(repo_url, local_path, branch='main')
+    subprocess.run(['chmod', '+x', '*.py'])
     restart_application()
 
 def restart_application():
@@ -45,11 +45,10 @@ load_dotenv()
 
 github_token = os.getenv('GITHUB_TOKEN')
 repo_url = 'https://github.com/S4n7s/tsk-me-apps.git'
-relative_path = 'tsk-me-app'
+name_path = 'tsk-me-apps'
 home_dir = os.path.expanduser("~")
-local_path = os.path.join(home_dir, relative_path)
-repo_owner = 's4n7s'
-api_url = f'https://api.github.com/repos/{repo_owner}/{relative_path}/releases/latest'
+local_path = os.path.join(home_dir, name_path)
+api_url = f'https://api.github.com/repos/s4n7s/{name_path}/releases/latest'
 response = requests.get(api_url)
 latest_release = response.json()
 latest_version = latest_release['tag_name']
