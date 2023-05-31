@@ -23,8 +23,7 @@ def check_version():
     response = requests.get(api_url)
     latest_release = response.json()
     latest_version = latest_release['tag_name']
-    current_version = '1.1'
-    if current_version != latest_version:
+    if version.current_version != latest_version:
         return True
 
 def update_files():
@@ -36,9 +35,9 @@ def update_files():
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
     Repo.clone_from(repo_url, local_path, branch='main')
-    '''python_files = glob.glob('*.py')
+    python_files = glob.glob('*.py')
     for file in python_files:
-        os.chmod(file, 0o755)'''
+        os.chmod(file, 0o755)
     restart_application()
 
 def restart_application():
@@ -52,9 +51,9 @@ load_dotenv()
 
 github_token = os.getenv('GITHUB_TOKEN')
 repo_url = 'https://github.com/S4n7s/tsk-me-apps.git'
-name_path = 'tsk-me-apps'
+relative_path = 'tsk-me-apps'
 home_dir = os.path.expanduser("~")
-local_path = os.path.join(home_dir, name_path)
+local_path = os.path.join(home_dir, relative_path)
 
 main = Tk()
 
@@ -76,10 +75,8 @@ if check_version():
     label_update.pack(fill=X, anchor="nw", padx=10, pady=5)
     button = Button(main, text="Обновить", font=("Arial", 10), command=update_files)
     button.pack(side=TOP, padx=10, pady=3)
-
     canvas = Canvas(main, width=main.winfo_screenwidth(), height=1, highlightthickness=0)
     canvas.pack()
-
     canvas.create_line(0, 0, main.winfo_screenwidth(), 0, fill="#808080")
 
 add_footer()
