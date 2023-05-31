@@ -1,5 +1,5 @@
 #!/usr/bin/evn python
-import subprocess, os, requests, shutil, sys, version
+import subprocess, os, requests, shutil, sys, glob, version
 from tkinter import Tk, Button, LEFT, TOP, LabelFrame, X, Label, Canvas
 from footer import add_footer
 from dotenv import load_dotenv
@@ -35,7 +35,9 @@ def update_files():
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
     Repo.clone_from(repo_url, local_path, branch='main')
-    subprocess.run(['chmod', '+x', '*.py'])
+    python_files = glob.glob('*.py')
+    for file in python_files:
+        os.chmod(file, 0o755)
     restart_application()
 
 def restart_application():
